@@ -11,7 +11,9 @@ A simple employee management App using Blazor
 
 ## Database Setup
 **1) Create new database in SQL Server Management Studio**
+
 **2) Create Table**
+
 CREATE TABLE Employees (
     EmployeeId INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(100),
@@ -20,6 +22,7 @@ CREATE TABLE Employees (
 );
 
 **3) Run Stored Procedures for CRUD Operations**
+
 -- CREATE
 
 CREATE PROCEDURE sp_AddEmployee
@@ -68,4 +71,5 @@ END
 GO
 
 **4) Connect database in Visual Studio via the Server Explorer**
+
 **5) Update appsettings.json in the BlazorEmployeeApp project with the connection string**
