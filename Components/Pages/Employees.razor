@@ -1,0 +1,74 @@
+﻿@page "/"
+@inject EmployeeRepository EmployeeRepository
+
+<h3>Employee Management</h3>
+
+<div class="mb-3">
+    <input @bind="employee.Name" placeholder="Name" class="form-control mb-2" />
+    <input @bind="employee.Department" placeholder="Department" class="form-control mb-2" />
+    <input type="number" @bind="employee.Salary" placeholder="Salary" class="form-control mb-2" />
+    <button class="btn btn-primary" @onclick="AddOrUpdate">@(employee.EmployeeId == 0 ? "Add" : "Update")</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in employees)
+        {
+            <tr>
+                <td>@emp.Name</td>
+                <td>@emp.Department</td>
+                <td>@emp.Salary</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" @onclick="() => Edit(emp)">Edit</button>
+                    <button class="btn btn-danger btn-sm" @onclick="() => Delete(emp.EmployeeId)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Employee> employees = new();
+    private Employee employee = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = (await EmployeeRepository.GetEmployees()).ToList();
+    }
+
+    private async Task AddOrUpdate()
+    {
+        if (employee.EmployeeId == 0)
+            await EmployeeRepository.AddEmployee(employee);
+        else
+            await EmployeeRepository.UpdateEmployee(employee);
+
+        employees = (await EmployeeRepository.GetEmployees()).ToList();
+        employee = new Employee();
+    }
+
+    private void Edit(Employee emp)
+    {
+        employee = new Employee
+        {
+            EmployeeId = emp.EmployeeId,
+            Name = emp.Name,
+            Department = emp.Department,
+            Salary = emp.Salary
+        };
+    }
+
+    private async Task Delete(int id)
+    {
+        await EmployeeRepository.DeleteEmployee(id);
+        employees = (await EmployeeRepository.GetEmployees()).ToList();
+    }
+}
