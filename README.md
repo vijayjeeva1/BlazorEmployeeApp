@@ -10,8 +10,7 @@ A simple employee management App using Blazor
 - One‑click run from Visual Studio
 
 ## Database Setup
-**1) Create new database in SQL Server Management Studio
-**
+**1) Create new database in SQL Server Management Studio**
 **2) Create Table**
 CREATE TABLE Employees (
     EmployeeId INT IDENTITY(1,1) PRIMARY KEY,
