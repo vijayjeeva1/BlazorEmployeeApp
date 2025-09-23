@@ -20,8 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var emp in employees)
-        {
+        <Virtualize Items="this.employees" Context="emp">
             <tr>
                 <td>@emp.Name</td>
                 <td>@emp.Department</td>
@@ -31,7 +30,7 @@
                     <button class="btn btn-danger btn-sm" @onclick="() => Delete(emp.EmployeeId)">Delete</button>
                 </td>
             </tr>
-        }
+        </Virtualize>
     </tbody>
 </table>
 
