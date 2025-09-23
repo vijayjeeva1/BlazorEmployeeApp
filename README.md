@@ -22,6 +22,7 @@ CREATE TABLE Employees (
 
 ### 3) Run Stored Procedures for CRUD Operations
 -- CREATE
+
 CREATE PROCEDURE sp_AddEmployee
     @Name NVARCHAR(100),
     @Department NVARCHAR(100),
@@ -34,6 +35,7 @@ END
 GO
 
 -- READ
+
 CREATE PROCEDURE sp_GetEmployees
 AS
 BEGIN
@@ -42,6 +44,7 @@ END
 GO
 
 -- UPDATE
+
 CREATE PROCEDURE sp_UpdateEmployee
     @EmployeeId INT,
     @Name NVARCHAR(100),
@@ -56,6 +59,7 @@ END
 GO
 
 -- DELETE
+
 CREATE PROCEDURE sp_DeleteEmployee
     @EmployeeId INT
 AS
