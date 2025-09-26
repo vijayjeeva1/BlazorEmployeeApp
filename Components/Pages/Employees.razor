@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <Virtualize Items="this.employees" Context="emp">
-            <tr>
+            <tr @key=employee.EmployeeId>
                 <td>@emp.Name</td>
                 <td>@emp.Department</td>
                 <td>@emp.Salary</td>
